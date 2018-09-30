@@ -1,0 +1,55 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center" xmlns="http://www.w3.org/1999/html">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+  <div class="form-group">
+    <label for ="taskName">Task Name:</label>
+    <input class="form-control" [(ngModel)]="taskName" id="taskName" />
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="date" [(ngModel)]="taskDate" id = "taskDate"/>
+  </div>
+  <div class="form-group">
+    <label for = "taskStatus">Task Status:</label>
+
+    <select class="form-control" [(ngModel)]="taskStatus" id = "taskStatus">
+      <option>pending</option>
+      <option>DONE</option>
+    </select>
+  </div>
+    <label for ="taskDesc">Task Description:</label>
+    <textarea class="form-control" rows="3" [(ngModel)]="taskDesc" id = "taskDesc"></textarea>
+
+
+  <br>
+  <button class="btn btn-primary" (click)="newTask()">Add Item{{taskCounter}}</button>
+  <button class="btn btn-info" (click)="deleteCompleted()">Delete Completed task{{completedCounter}}</button>
+  <br>
+
+  <table class="table table-hover">
+    <tr>
+      <th> # </th>
+      <th> Name </th>
+      <th> Due Date </th>
+      <th>Status</th>
+      <th>Description</th>
+      <th>Detelte?</th>
+    </tr>
+    <tr *ngFor="let item of taskList; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.date}}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.desc}}</td>
+      <td><button class="btn btn-danger" (click)="deleteThis(i)">Delete</button></td>
+    </tr>
+
+  </table>
+
+
+
+
+
