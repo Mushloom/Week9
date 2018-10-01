@@ -15,11 +15,14 @@ export class AppComponent {
   taskDesc="";
   taskCounter=0;
   completedCounter=0;
+  displayList = this.taskList;
+  checker= -1;
 
   newTask(){
     let task={name:this.taskName,date:this.taskDate,status:this.taskStatus,desc:this.taskDesc};
     this.taskList.push(task);
     this.updateCounter();
+    this.displayList=this.taskList;
   }
   deleteThis(index){
     this.taskList.splice(index,1);
@@ -35,6 +38,22 @@ export class AppComponent {
     }
     this.updateCounter();
   }
+
+  displayCompleted(){
+    this.displayList=[];
+    for (let i=0;i<this.taskList.length;i++ ) {
+      if (this.taskList[i].status == "DONE") {
+        if (this.checker<0) {
+          this.displayList.push(this.taskList[i]);
+        }
+      }else if (this.checker>0){
+        this.displayList.push(this.taskList[i]);
+      }
+    }
+    this.checker=this.checker*-1;
+  }
+
+
 
   updateCounter(){
     this.completedCounter=0;
